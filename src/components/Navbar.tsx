@@ -27,10 +27,9 @@ export default function Navbar() {
   return (
     <>
       <nav
-        className={`fixed top-0 w-full z-50 backdrop-blur-md h-20 transition-all duration-300 ${scrolled
-            ? "bg-ivory-white/95 shadow-sm"
-            : "bg-ivory-white/80"
-          }`}
+        className={`fixed top-0 w-full z-50 backdrop-blur-md h-20 transition-all duration-300 ${
+          scrolled ? "bg-ivory-white/95 shadow-sm" : "bg-ivory-white/80"
+        }`}
       >
         <div className="flex justify-between items-center max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop h-full">
           <Link
@@ -41,7 +40,6 @@ export default function Navbar() {
             Les Gîtes de Bourniquel
           </Link>
 
-          {/* Navigation Bureau */}
           <div className="hidden md:flex gap-8 items-center">
             {navItems.map(({ key, label }) => (
               <a
@@ -58,71 +56,49 @@ export default function Navbar() {
             Book Now
           </button>
 
-          {/* Bouton Burger (Z-50 pour rester au-dessus du menu) */}
           <button
             onClick={() => setMenuOpen(!menuOpen)}
             className="md:hidden relative z-50 w-9 h-9 flex flex-col items-center justify-center gap-[6px]"
             aria-label="Menu"
           >
             <span className={`block h-[2px] w-6 rounded-full bg-on-surface transition-all duration-300 ${menuOpen ? "rotate-45 translate-y-[8px]" : ""}`} />
-            <span className={`block h-[2px] w-6 rounded-full bg-on-surface transition-all duration-300 ${menuOpen ? "opacity-0 scale-0" : ""}`} />
+            <span className={`block h-[2px] w-6 rounded-full bg-on-surface transition-all duration-300 ${menuOpen ? "opacity-0" : ""}`} />
             <span className={`block h-[2px] w-6 rounded-full bg-on-surface transition-all duration-300 ${menuOpen ? "-rotate-45 -translate-y-[8px]" : ""}`} />
           </button>
         </div>
       </nav>
 
-      {/* Menu Mobile (Sorti de la <nav> pour une gestion propre du plein écran) */}
-      <div
-        className={`fixed inset-0 z-40 transition-all duration-500 md:hidden ${menuOpen ? "visible" : "invisible"
-          }`}
-      >
-        {/* Overlay sombre arrière-plan */}
-        <div
-          className={`absolute inset-0 bg-black/40 backdrop-blur-sm transition-opacity duration-500 ${menuOpen ? "opacity-100" : "opacity-0"
-            }`}
-          onClick={() => setMenuOpen(false)}
-        />
+      {menuOpen && (
+        <div className="fixed inset-0 z-40 md:hidden">
+          <div className="absolute inset-0 bg-ivory-white">
+            <div className="flex flex-col h-full pt-24">
+              <div className="flex-1 flex flex-col justify-center px-margin-mobile max-w-sm mx-auto w-full">
+                <div className="space-y-1">
+                  {navItems.map((item) => (
+                    <a
+                      key={item.key}
+                      href={`#${item.key}`}
+                      onClick={() => setMenuOpen(false)}
+                      className="block w-full text-left px-6 py-5 font-display-lg text-2xl text-on-surface rounded-xl hover:bg-primary-fixed hover:text-on-primary-fixed transition-all duration-200 active:scale-[0.98]"
+                    >
+                      {item.label}
+                    </a>
+                  ))}
+                </div>
+              </div>
 
-        {/* Panneau de navigation */}
-        <div
-          className={`absolute top-0 right-0 h-full w-72 max-w-[85vw] bg-ivory-white shadow-2xl transition-transform duration-500 ease-out ${menuOpen ? "translate-x-0" : "translate-x-full"
-            }`}
-        >
-          <div className="flex flex-col h-full pt-24 pb-8 px-8">
-            <div className="flex-1 flex flex-col items-center justify-center gap-1">
-              {navItems.map((item, i) => (
-                <a
-                  key={item.key}
-                  href={`#${item.key}`}
+              <div className="px-margin-mobile pb-8 max-w-sm mx-auto w-full">
+                <button
                   onClick={() => setMenuOpen(false)}
-                  className="relative group w-full text-center py-4 font-display-lg text-2xl text-on-surface-variant hover:text-primary transition-colors duration-300"
-                  style={{
-                    transitionDelay: menuOpen ? `${i * 60}ms` : "0ms",
-                    opacity: menuOpen ? 1 : 0,
-                    transform: menuOpen ? "translateY(0)" : "translateY(12px)",
-                    transition: "opacity 0.4s ease-out, transform 0.4s ease-out, color 0.3s",
-                  }}
+                  className="w-full bg-primary text-on-primary py-4 font-label-md rounded-xl hover:bg-deep-forest active:scale-[0.98] transition-all duration-200"
                 >
-                  {item.label}
-                  <span className="absolute bottom-2 left-1/2 -translate-x-1/2 w-0 h-[2px] bg-primary rounded-full transition-all duration-300 group-hover:w-8" />
-                </a>
-              ))}
-            </div>
-
-            <div className="pt-8 border-t border-black/5">
-              <button
-                onClick={() => setMenuOpen(false)}
-                className="w-full bg-primary text-on-primary py-4 font-label-md rounded-lg hover:scale-[1.02] active:scale-95 transition-all duration-200 shadow-lg shadow-primary/20"
-              >
-                Book Now
-              </button>
-              <p className="text-center font-label-sm text-on-surface-variant/50 mt-4 text-xs">
-                Les Gîtes de Bourniquel
-              </p>
+                  Book Now
+                </button>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      )}
     </>
   );
 }

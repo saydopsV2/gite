@@ -8,7 +8,7 @@ export default function ContactSection() {
               Préparez votre séjour
             </h2>
             <p className="font-body-lg text-on-surface-variant mb-10">
-              Marie-Lise et Alain Bouyssou vous accueillent toute l'année pour
+              Florence et Benoit Bouyssou vous accueillent toute l'année pour
               une parenthèse enchantée en Dordogne.
             </p>
             <div className="space-y-6">
