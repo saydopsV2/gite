@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { gites, otherGites } from "../data/gites";
 import Navbar from "../components/Navbar";
@@ -6,6 +7,7 @@ import Footer from "../components/Footer";
 export default function GiteDetailPage() {
   const { slug } = useParams<{ slug: string }>();
   const gite = gites.find((g) => g.slug === slug);
+  const [activeIndex, setActiveIndex] = useState(0);
 
   if (!gite) {
     return (
@@ -21,6 +23,16 @@ export default function GiteDetailPage() {
   }
 
   const others = otherGites(gite.slug);
+  const galleryImages = [gite.mainImage, ...gite.images.filter((src) => src !== gite.mainImage)];
+  const activeImage = galleryImages[activeIndex] ?? gite.mainImage;
+
+  const showPrevious = () => {
+    setActiveIndex((prev) => (prev === 0 ? galleryImages.length - 1 : prev - 1));
+  };
+
+  const showNext = () => {
+    setActiveIndex((prev) => (prev + 1) % galleryImages.length);
+  };
 
   return (
     <>
@@ -138,23 +150,64 @@ export default function GiteDetailPage() {
                 <h2 className="font-display-lg text-headline-md mb-6 text-on-surface">
                   Galerie Photos
                 </h2>
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-gutter">
-                  {gite.images.map((src, i) => (
-                    <a
-                      key={i}
-                      href={src}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="group relative overflow-hidden rounded-xl aspect-[4/3]"
-                    >
-                      <img
-                        src={src}
-                        alt={`${gite.title} - Photo ${i + 1}`}
-                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                      />
-                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors" />
-                    </a>
-                  ))}
+
+                <div className="rounded-2xl overflow-hidden border border-black/5 bg-stone-light/70 shadow-sm">
+                  <div className="relative aspect-[4/3]">
+                    <img
+                      src={activeImage}
+                      alt={`${gite.title} - Photo ${activeIndex + 1}`}
+                      className="w-full h-full object-cover"
+                    />
+
+                    {galleryImages.length > 1 && (
+                      <>
+                        <button
+                          type="button"
+                          onClick={showPrevious}
+                          className="absolute left-3 top-1/2 -translate-y-1/2 flex h-10 w-10 items-center justify-center rounded-full bg-black/50 text-white backdrop-blur-sm transition hover:bg-black/70"
+                          aria-label="Image précédente"
+                        >
+                          <span className="material-symbols-outlined">chevron_left</span>
+                        </button>
+                        <button
+                          type="button"
+                          onClick={showNext}
+                          className="absolute right-3 top-1/2 -translate-y-1/2 flex h-10 w-10 items-center justify-center rounded-full bg-black/50 text-white backdrop-blur-sm transition hover:bg-black/70"
+                          aria-label="Image suivante"
+                        >
+                          <span className="material-symbols-outlined">chevron_right</span>
+                        </button>
+                      </>
+                    )}
+
+                    <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-2 rounded-full bg-black/50 px-3 py-1.5 text-xs text-white backdrop-blur-sm">
+                      <span>{activeIndex + 1}</span>
+                      <span>/</span>
+                      <span>{galleryImages.length}</span>
+                    </div>
+                  </div>
+
+                  {galleryImages.length > 1 && (
+                    <div className="grid grid-cols-4 gap-2 p-3 sm:grid-cols-6">
+                      {galleryImages.map((src, index) => (
+                        <button
+                          key={src}
+                          type="button"
+                          onClick={() => setActiveIndex(index)}
+                          className={`overflow-hidden rounded-lg border-2 transition ${
+                            index === activeIndex ? "border-primary" : "border-transparent"
+                          }`}
+                          aria-label={`Afficher la photo ${index + 1}`}
+                        >
+                          <img
+                            src={src}
+                            alt={`${gite.title} - Miniature ${index + 1}`}
+                            className="h-16 w-full object-cover"
+                          />
+                        </button>
+                      ))}
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
