@@ -40,7 +40,8 @@ export default function Navbar() {
             Les Gîtes de Bourniquel
           </Link>
 
-          <div className="hidden md:flex gap-8 items-center">
+          {/* Full nav only from lg (1024px) up — tablets get the burger menu */}
+          <div className="hidden lg:flex gap-8 items-center">
             {navItems.map(({ key, label }) => (
               <a
                 key={key}
@@ -52,53 +53,84 @@ export default function Navbar() {
             ))}
           </div>
 
-          <button className="hidden md:block bg-primary text-on-primary px-8 py-3 font-label-md rounded-lg hover:scale-95 duration-200 ease-in-out">
+          <button className="hidden lg:block bg-primary text-on-primary px-8 py-3 font-label-md rounded-lg hover:scale-95 duration-200 ease-in-out">
             Book Now
           </button>
 
+          {/* Burger — visible on mobile + tablet, hidden only at lg+ */}
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            className="md:hidden relative z-50 w-9 h-9 flex flex-col items-center justify-center gap-[6px]"
-            aria-label="Menu"
+            className="lg:hidden relative z-50 w-9 h-9 flex flex-col items-center justify-center gap-[6px] group"
+            aria-label={menuOpen ? "Fermer le menu" : "Ouvrir le menu"}
+            aria-expanded={menuOpen}
+            aria-controls="mobile-menu"
           >
-            <span className={`block h-[2px] w-6 rounded-full bg-on-surface transition-all duration-300 ${menuOpen ? "rotate-45 translate-y-[8px]" : ""}`} />
-            <span className={`block h-[2px] w-6 rounded-full bg-on-surface transition-all duration-300 ${menuOpen ? "opacity-0" : ""}`} />
-            <span className={`block h-[2px] w-6 rounded-full bg-on-surface transition-all duration-300 ${menuOpen ? "-rotate-45 -translate-y-[8px]" : ""}`} />
+            <span
+              className={`block h-[2px] w-6 rounded-full bg-on-surface origin-center transition-all duration-300 ease-[cubic-bezier(0.65,0,0.35,1)] motion-reduce:transition-none ${
+                menuOpen ? "rotate-45 translate-y-[8px]" : "group-hover:w-5"
+              }`}
+            />
+            <span
+              className={`block h-[2px] w-6 rounded-full bg-on-surface origin-center transition-all duration-300 ease-[cubic-bezier(0.65,0,0.35,1)] motion-reduce:transition-none ${
+                menuOpen ? "scale-x-0 opacity-0" : "group-hover:w-4"
+              }`}
+            />
+            <span
+              className={`block h-[2px] w-6 rounded-full bg-on-surface origin-center transition-all duration-300 ease-[cubic-bezier(0.65,0,0.35,1)] motion-reduce:transition-none ${
+                menuOpen ? "-rotate-45 -translate-y-[8px]" : "group-hover:w-5"
+              }`}
+            />
           </button>
         </div>
       </nav>
 
-      {menuOpen && (
-        <div className="fixed inset-0 z-40 md:hidden">
-          <div className="absolute inset-0 bg-ivory-white">
-            <div className="flex flex-col h-full pt-24">
-              <div className="flex-1 flex flex-col justify-center px-margin-mobile max-w-sm mx-auto w-full">
-                <div className="space-y-1">
-                  {navItems.map((item) => (
-                    <a
-                      key={item.key}
-                      href={`#${item.key}`}
-                      onClick={() => setMenuOpen(false)}
-                      className="block w-full text-left px-6 py-5 font-display-lg text-2xl text-on-surface rounded-xl hover:bg-primary-fixed hover:text-on-primary-fixed transition-all duration-200 active:scale-[0.98]"
-                    >
-                      {item.label}
-                    </a>
-                  ))}
-                </div>
+      {/* Mobile / tablet menu — stays mounted so open AND close both animate instead of popping instantly */}
+      <div
+        id="mobile-menu"
+        className={`fixed inset-0 z-40 lg:hidden transition-opacity duration-[400ms] ease-out motion-reduce:transition-none ${
+          menuOpen ? "opacity-100 visible" : "opacity-0 invisible pointer-events-none"
+        }`}
+      >
+        <div
+          className={`absolute inset-0 bg-ivory-white transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] motion-reduce:transition-none ${
+            menuOpen ? "translate-y-0" : "-translate-y-4"
+          }`}
+        >
+          <div className="flex flex-col h-full pt-24">
+            <div className="flex-1 flex flex-col justify-center px-margin-mobile max-w-sm md:max-w-lg mx-auto w-full">
+              <div className="space-y-1">
+                {navItems.map((item, i) => (
+                  <a
+                    key={item.key}
+                    href={`#${item.key}`}
+                    onClick={() => setMenuOpen(false)}
+                    style={{ transitionDelay: menuOpen ? `${120 + i * 60}ms` : "0ms" }}
+                    className={`block w-full text-left px-6 py-5 font-display-lg text-2xl md:text-3xl text-on-surface rounded-xl hover:bg-primary-fixed hover:text-on-primary-fixed transition-all duration-500 ease-out motion-reduce:transition-none active:scale-[0.98] ${
+                      menuOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+                    }`}
+                  >
+                    {item.label}
+                  </a>
+                ))}
               </div>
+            </div>
 
-              <div className="px-margin-mobile pb-8 max-w-sm mx-auto w-full">
-                <button
-                  onClick={() => setMenuOpen(false)}
-                  className="w-full bg-primary text-on-primary py-4 font-label-md rounded-xl hover:bg-deep-forest active:scale-[0.98] transition-all duration-200"
-                >
-                  Book Now
-                </button>
-              </div>
+            <div
+              style={{ transitionDelay: menuOpen ? `${120 + navItems.length * 60}ms` : "0ms" }}
+              className={`px-margin-mobile pb-8 max-w-sm md:max-w-lg mx-auto w-full transition-all duration-500 ease-out motion-reduce:transition-none ${
+                menuOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+              }`}
+            >
+              <button
+                onClick={() => setMenuOpen(false)}
+                className="w-full bg-primary text-on-primary py-4 font-label-md rounded-xl hover:bg-deep-forest active:scale-[0.98] transition-all duration-200"
+              >
+                Book Now
+              </button>
             </div>
           </div>
         </div>
-      )}
+      </div>
     </>
   );
 }
