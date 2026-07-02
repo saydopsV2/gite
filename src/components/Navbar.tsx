@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const navItems = [
   { key: "gites", label: "Nos Gîtes" },
@@ -10,8 +10,25 @@ const navItems = [
 ];
 
 export default function Navbar() {
+  const location = useLocation();
+  const navigate = useNavigate();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const isHomePage = location.pathname === "/";
+
+  const handleNavClick = (section: string) => {
+    setMenuOpen(false);
+
+    if (isHomePage) {
+      const target = document.getElementById(section);
+      if (target) {
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+      return;
+    }
+
+    navigate(`/?section=${section}`, { replace: false });
+  };
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 100);
@@ -43,13 +60,14 @@ export default function Navbar() {
           {/* Full nav only from lg (1024px) up — tablets get the burger menu */}
           <div className="hidden lg:flex gap-8 items-center">
             {navItems.map(({ key, label }) => (
-              <a
+              <button
                 key={key}
-                href={`#${key}`}
+                type="button"
+                onClick={() => handleNavClick(key)}
                 className="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors duration-300"
               >
                 {label}
-              </a>
+              </button>
             ))}
           </div>
 
@@ -100,17 +118,17 @@ export default function Navbar() {
             <div className="flex-1 flex flex-col justify-center px-margin-mobile max-w-sm md:max-w-lg mx-auto w-full">
               <div className="space-y-1">
                 {navItems.map((item, i) => (
-                  <a
+                  <button
                     key={item.key}
-                    href={`#${item.key}`}
-                    onClick={() => setMenuOpen(false)}
+                    type="button"
+                    onClick={() => handleNavClick(item.key)}
                     style={{ transitionDelay: menuOpen ? `${120 + i * 60}ms` : "0ms" }}
                     className={`block w-full text-left px-6 py-5 font-display-lg text-2xl md:text-3xl text-on-surface rounded-xl hover:bg-primary-fixed hover:text-on-primary-fixed transition-all duration-500 ease-out motion-reduce:transition-none active:scale-[0.98] ${
                       menuOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
                     }`}
                   >
                     {item.label}
-                  </a>
+                  </button>
                 ))}
               </div>
             </div>

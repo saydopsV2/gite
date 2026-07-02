@@ -18,7 +18,7 @@ export default function GitesSection() {
           {gites.map((gite) => (
             <Link
               key={gite.id}
-              to={`/gite/${gite.slug}`}
+              to={`/${gite.slug}`}
               className={`group relative overflow-hidden rounded-xl bg-ivory-white shadow-sm border border-black/5 cursor-pointer transition-shadow hover:shadow-md ${gite.id === "la-forge" ? "md:col-span-2 md:row-span-2" : ""}`}
             >
               <div

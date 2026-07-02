@@ -254,7 +254,7 @@ export default function GiteDetailPage() {
                     {others.map((o) => (
                       <li key={o.id}>
                         <Link
-                          to={`/gite/${o.slug}`}
+                          to={`/${o.slug}`}
                           className="flex items-center gap-3 group"
                         >
                           <div className="w-14 h-14 rounded-lg overflow-hidden shrink-0">
