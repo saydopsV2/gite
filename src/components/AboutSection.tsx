@@ -1,3 +1,5 @@
+import { assetUrl } from "../utils/asset";
+
 export default function AboutSection() {
   return (
     <section className="py-16 md:py-section-gap px-margin-mobile" id="heritage">
@@ -8,7 +10,7 @@ export default function AboutSection() {
               <img
                 alt="L'entrée authentique d'un gîte en pierre"
                 className="w-full h-full object-cover"
-                src="https://lh3.googleusercontent.com/aida/AP1WRLvCQW1Ntip4rEeDQxox2Uw3DYCFb6JcJ9EhdaV3BAs2t8apoKQy4JnyVsMb--w6cDU97EwsDKyA8HwzRzepaqiipG-AUDIO3plm1MYQI_IVYXj6QnrxKlNSsgaqz6m4xSoau57METKRKFKj8hAxjVvs8-ZsJWr_9Ct8-SM3rRO1FrIBdmXnY3E3uF0XgPCvDC0CZZf_v-g0AxqItFP09vCaHbXRCPen74tr0cQ4r6UWKW4Pz01qHrIxMza-"
+                src={assetUrl("images/general/about.jpg")}
               />
             </div>
             <div className="hidden md:block absolute -bottom-8 -right-8 w-48 h-48 bg-secondary-container/30 -z-10 rounded-full blur-3xl" />

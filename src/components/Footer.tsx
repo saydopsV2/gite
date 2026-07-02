@@ -1,3 +1,5 @@
+import { assetUrl } from "../utils/asset";
+
 export default function Footer() {
   return (
     <footer className="bg-stone-light border-t border-black/5">
@@ -82,7 +84,7 @@ export default function Footer() {
               <img
                 className="w-full h-full object-cover"
                 alt="Carte de localisation de Belvès, Dordogne"
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCk5mhl3Ee028UQPeQd6jYu81nyBehYzNji4G1P2zPY5nKaLSiU2K5O1Fz17sgj7qIMgYi4iyk95Fv6WFkxJFKFRa17nxAVTqLDzwqUufKKuGP-HvJ45-YgL8m39yMrzJdTU-4n69o3dmU5Q-Bu3AfXwSj0cG4-vcZihDFqwK36oecQY_3coMNamO0NujrW4Ygf_uV16MJyXaIRiLjePQEzuuYmK-cSXQLPgIv1JvwqpC0JUMbK0Jo9hJJ-EI76qTUw7bz0BcQcd-FY"
+                src={assetUrl("images/general/footer-map.jpg")}
               />
             </div>
           </div>

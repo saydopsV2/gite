@@ -1,3 +1,5 @@
+import { assetUrl } from "../utils/asset";
+
 export interface PricePeriod {
   period: string;
   price: string;
@@ -18,6 +20,8 @@ export interface Gite {
   mainImage: string;
   images: string[];
 }
+
+const img = (slug: string, file: string) => assetUrl(`images/gites/${slug}/${file}`);
 
 export const gites: Gite[] = [
   {
@@ -53,23 +57,13 @@ export const gites: Gite[] = [
       { label: "Draps", value: "9 €/lit" },
       { label: "Chauffage", value: "Selon relevé compteur d'électricité" },
     ],
-    mainImage:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuDQ6_OGFWutRAIJ3DJ9bvKC5T_c1uAt-A2m0x0Iv7FEEDTLG0GX-H1b-eIpqrMs5HLR4ukz0BxIy8ZChXnMUSoEJIDGMPHtakI1sfOgJxZFnqvpLqH_Z_8f2zh89FnIEvjHPf0qIx_OB1fk8hr_9YxpDkuZa0E1COimsfEKTdUwebqXdPVciXYd8vlXDifDN570XYvUNo2SF8J5MfH6V2eC7WkYckv2DPjKQqPtdhj_-oIDzzWTTDeV9LCGjVlYISsDt4lm4Hje5NFq",
+    mainImage: img("la-forge", "gite-forge-01.jpg"),
     images: [
-      "https://gites-charme-piscine-dordogne-perigord.com/wp-content/uploads/2023/03/gite-forge-14.jpg",
-      "https://gites-charme-piscine-dordogne-perigord.com/wp-content/uploads/2023/03/gite-forge-08.jpg",
-      "https://gites-charme-piscine-dordogne-perigord.com/wp-content/uploads/2023/03/gite-forge-09.jpg",
-      "https://gites-charme-piscine-dordogne-perigord.com/wp-content/uploads/2023/03/gite-forge-07.jpg",
-      "https://gites-charme-piscine-dordogne-perigord.com/wp-content/uploads/2023/03/gite-forge-02.jpg",
-      "https://gites-charme-piscine-dordogne-perigord.com/wp-content/uploads/2023/03/gite-forge-03.jpg",
-      "https://gites-charme-piscine-dordogne-perigord.com/wp-content/uploads/2023/03/gite-forge-04.jpg",
-      "https://gites-charme-piscine-dordogne-perigord.com/wp-content/uploads/2023/03/gite-forge-06.jpg",
-      "https://gites-charme-piscine-dordogne-perigord.com/wp-content/uploads/2023/03/gite-forge-05.jpg",
-      "https://gites-charme-piscine-dordogne-perigord.com/wp-content/uploads/2023/03/gite-forge-15.jpg",
-      "https://gites-charme-piscine-dordogne-perigord.com/wp-content/uploads/2023/03/gite-forge-10.jpg",
-      "https://gites-charme-piscine-dordogne-perigord.com/wp-content/uploads/2023/03/gite-forge-11.jpg",
-      "https://gites-charme-piscine-dordogne-perigord.com/wp-content/uploads/2023/03/gite-forge-13.jpg",
-    ],
+      "gite-forge-14.jpg","gite-forge-08.jpg","gite-forge-09.jpg","gite-forge-07.jpg",
+      "gite-forge-02.jpg","gite-forge-03.jpg","gite-forge-04.jpg","gite-forge-06.jpg",
+      "gite-forge-05.jpg","gite-forge-15.jpg","gite-forge-10.jpg","gite-forge-11.jpg",
+      "gite-forge-13.jpg",
+    ].map((f) => img("la-forge", f)),
   },
   {
     id: "les-duos",
@@ -100,17 +94,12 @@ export const gites: Gite[] = [
       { label: "Draps", value: "9 €/lit" },
       { label: "Chauffage", value: "Selon relevé compteur d'électricité" },
     ],
-    mainImage:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuBvAh5jbyGghPs9nk9lL1MWJ2HuLw7YrSTmfXcqO-ZzixhALopidXLGrZm7DF6Oh3ZNRFRUAAeR7WHQFCYdiwBnxMGZ-bKk0kwNOr-_Iij0r6Dy-wVdRDlVM8i4TgLVoKpY7kFfRbvOskG9wBA-tYz9GfaH5V3-Onpt2dP3aMwFVgdbUcLx2HiQr0j6QXH3rHREnZ-0eEvx58aGqw-rjLF-EV0qXtyGnoh6ZTKrRhyEuQnovACgGnoPnC16EhQJLKnikNpgZ7UKaDFJ",
+    mainImage: img("les-duos", "gite-duos-01.jpg"),
     images: [
-      "https://gites-charme-piscine-dordogne-perigord.com/wp-content/uploads/2023/03/gite-duo-gris-01.jpg",
-      "https://gites-charme-piscine-dordogne-perigord.com/wp-content/uploads/2023/03/gite-duo-gris-02.jpg",
-      "https://gites-charme-piscine-dordogne-perigord.com/wp-content/uploads/2023/03/gite-duo-rouge-04.jpg",
-      "https://gites-charme-piscine-dordogne-perigord.com/wp-content/uploads/2023/03/gite-duo-rouge-01.jpg",
-      "https://gites-charme-piscine-dordogne-perigord.com/wp-content/uploads/2023/03/gite-duo-rouge-02.jpg",
-      "https://gites-charme-piscine-dordogne-perigord.com/wp-content/uploads/2023/03/gite-duo-rouge-03.jpg",
-      "https://gites-charme-piscine-dordogne-perigord.com/wp-content/uploads/2023/03/gite-duo-03.jpg",
-    ],
+      "gite-duo-gris-01.jpg","gite-duo-gris-02.jpg","gite-duo-rouge-04.jpg",
+      "gite-duo-rouge-01.jpg","gite-duo-rouge-02.jpg","gite-duo-rouge-03.jpg",
+      "gite-duo-03.jpg",
+    ].map((f) => img("les-duos", f)),
   },
   {
     id: "la-treille",
@@ -142,18 +131,12 @@ export const gites: Gite[] = [
       { label: "Draps", value: "9 €/lit" },
       { label: "Chauffage", value: "Selon relevé compteur d'électricité" },
     ],
-    mainImage:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuCiAIWB-2J_Hor9wUU3aZDMULoBHgWvP2bk3Ng1w7uNBJyL71tJRku53pzzBjNgr_qkasZuetrH3Fr0k9ZF_aF_5YxcuzptgtxFKcUnjlmIU4_3k33PSNYgRi42gD4q5I7_8H53NacVPNZfi6Es5QOnpDZwTLifgsQqjwxg1lUa224Lo2CTJJ8WZF4Hzp_sqDv8FwjmukBeof_yhu1N4yLs9y-ceBnGn1M2oW8u8L_HmVuUWnbcPhQBY6VonjqITVgRlNRjFk3MHGJE",
+    mainImage: img("la-treille", "gite-treille-01.jpg"),
     images: [
-      "https://gites-charme-piscine-dordogne-perigord.com/wp-content/uploads/2023/03/gite-treille-02.jpg",
-      "https://gites-charme-piscine-dordogne-perigord.com/wp-content/uploads/2023/03/gite-treille-07.jpg",
-      "https://gites-charme-piscine-dordogne-perigord.com/wp-content/uploads/2023/03/gite-treille-06.jpg",
-      "https://gites-charme-piscine-dordogne-perigord.com/wp-content/uploads/2023/03/gite-treille-03.jpg",
-      "https://gites-charme-piscine-dordogne-perigord.com/wp-content/uploads/2023/03/gite-treille-04.jpg",
-      "https://gites-charme-piscine-dordogne-perigord.com/wp-content/uploads/2023/03/gite-treille-05.jpg",
-      "https://gites-charme-piscine-dordogne-perigord.com/wp-content/uploads/2023/03/gite-treille-09.jpg",
-      "https://gites-charme-piscine-dordogne-perigord.com/wp-content/uploads/2023/03/gite-treille-08.jpg",
-    ],
+      "gite-treille-02.jpg","gite-treille-07.jpg","gite-treille-06.jpg",
+      "gite-treille-03.jpg","gite-treille-04.jpg","gite-treille-05.jpg",
+      "gite-treille-09.jpg","gite-treille-08.jpg",
+    ].map((f) => img("la-treille", f)),
   },
   {
     id: "hauts-vieille-grange",
@@ -184,20 +167,12 @@ export const gites: Gite[] = [
       { label: "Draps", value: "9 €/lit" },
       { label: "Chauffage", value: "Selon relevé compteur d'électricité" },
     ],
-    mainImage:
-      "https://gites-charme-piscine-dordogne-perigord.com/wp-content/uploads/2023/03/gite-hauts-01.jpg",
+    mainImage: img("hauts-vieille-grange", "gite-hauts-01.jpg"),
     images: [
-      "https://gites-charme-piscine-dordogne-perigord.com/wp-content/uploads/2023/03/gite-hauts-04.jpg",
-      "https://gites-charme-piscine-dordogne-perigord.com/wp-content/uploads/2023/03/gite-hauts-05.jpg",
-      "https://gites-charme-piscine-dordogne-perigord.com/wp-content/uploads/2023/03/gite-hauts-03.jpg",
-      "https://gites-charme-piscine-dordogne-perigord.com/wp-content/uploads/2023/03/gite-hauts-06.jpg",
-      "https://gites-charme-piscine-dordogne-perigord.com/wp-content/uploads/2023/03/gite-hauts-02.jpg",
-      "https://gites-charme-piscine-dordogne-perigord.com/wp-content/uploads/2023/03/gite-hauts-07.jpg",
-      "https://gites-charme-piscine-dordogne-perigord.com/wp-content/uploads/2023/03/gite-hauts-08.jpg",
-      "https://gites-charme-piscine-dordogne-perigord.com/wp-content/uploads/2023/03/gite-hauts-09.jpg",
-      "https://gites-charme-piscine-dordogne-perigord.com/wp-content/uploads/2023/03/gite-hauts-10.jpg",
-      "https://gites-charme-piscine-dordogne-perigord.com/wp-content/uploads/2023/03/gite-hauts-12.jpg",
-    ],
+      "gite-hauts-04.jpg","gite-hauts-05.jpg","gite-hauts-03.jpg","gite-hauts-06.jpg",
+      "gite-hauts-02.jpg","gite-hauts-07.jpg","gite-hauts-08.jpg","gite-hauts-09.jpg",
+      "gite-hauts-10.jpg","gite-hauts-12.jpg",
+    ].map((f) => img("hauts-vieille-grange", f)),
   },
   {
     id: "maison-de-denise",
@@ -230,20 +205,12 @@ export const gites: Gite[] = [
       { label: "Draps", value: "9 €/lit" },
       { label: "Chauffage", value: "Selon relevé compteur d'électricité" },
     ],
-    mainImage:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuAl-lw2abH_HCvZbDA3FkAhAA-qlpmxAloVHPMQHxx0tMInawJ0BPBzX-fAIe1CsBMx0fFJiseUyS8G_fxNkZTraO5NLmb0mZaNUoYdxZu4YW-tvptG4f2J7r5p4l-btdxy8sb6y-qxcGgaxMqQHzSge2CFk44-B8pTWrYEl3wBv6a1JBtWUB1RA2eJz4ux4IWr25QRJNzQNPG6DpVdK0R_5TtbpLlPubHtEgNuducGLIbXAam_4K3ReK_jhZ66P8F5l3JDgLxee-O9",
+    mainImage: img("maison-de-denise", "gite-denise-12.jpg"),
     images: [
-      "https://gites-charme-piscine-dordogne-perigord.com/wp-content/uploads/2023/03/gite-denise-10.jpg",
-      "https://gites-charme-piscine-dordogne-perigord.com/wp-content/uploads/2023/03/gite-denise-06.jpg",
-      "https://gites-charme-piscine-dordogne-perigord.com/wp-content/uploads/2023/03/gite-denise-05.jpg",
-      "https://gites-charme-piscine-dordogne-perigord.com/wp-content/uploads/2023/03/gite-denise-03.jpg",
-      "https://gites-charme-piscine-dordogne-perigord.com/wp-content/uploads/2023/03/gite-denise-02.jpg",
-      "https://gites-charme-piscine-dordogne-perigord.com/wp-content/uploads/2023/03/gite-denise-04.jpg",
-      "https://gites-charme-piscine-dordogne-perigord.com/wp-content/uploads/2023/03/gite-denise-07.jpg",
-      "https://gites-charme-piscine-dordogne-perigord.com/wp-content/uploads/2023/03/gite-denise-01.jpg",
-      "https://gites-charme-piscine-dordogne-perigord.com/wp-content/uploads/2023/03/gite-denise-09.jpg",
-      "https://gites-charme-piscine-dordogne-perigord.com/wp-content/uploads/2023/03/gite-denise-11.jpg",
-    ],
+      "gite-denise-10.jpg","gite-denise-06.jpg","gite-denise-05.jpg","gite-denise-03.jpg",
+      "gite-denise-02.jpg","gite-denise-04.jpg","gite-denise-07.jpg","gite-denise-01.jpg",
+      "gite-denise-09.jpg","gite-denise-11.jpg",
+    ].map((f) => img("maison-de-denise", f)),
   },
   {
     id: "la-cour",
@@ -276,17 +243,11 @@ export const gites: Gite[] = [
       { label: "Draps", value: "9 €/lit" },
       { label: "Chauffage", value: "Selon relevé compteur d'électricité" },
     ],
-    mainImage:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuBGGzRwgvEqoYXjUWfCWuAw2yn-Unwda9-R7jDru5zp4AJT7tbWq5L6EShncRXJNBrv2gfBSOrX2DeJW93v1mu7InomZro1bSWoVWpgPuraEAhtVJ07IiJFwgCLO4Ad4wOeQXnpgxStbnHrcmPsuwz7eUvMEtS2GA1Yh_qtzKaAiNRGZSE6fwtbxNtDuE0s6aW8ngXqgxGSMloqYFel9S3XSHiFRHAG1FwboYcfAAc_cGEwDn192jo9VxDAT5RC8CLsl0-fuX-obXBz",
+    mainImage: img("la-cour", "gite-cour-08.jpg"),
     images: [
-      "https://gites-charme-piscine-dordogne-perigord.com/wp-content/uploads/2023/03/gite-cour-01.jpg",
-      "https://gites-charme-piscine-dordogne-perigord.com/wp-content/uploads/2023/03/gite-cour-06.jpg",
-      "https://gites-charme-piscine-dordogne-perigord.com/wp-content/uploads/2023/03/gite-cour-02.jpg",
-      "https://gites-charme-piscine-dordogne-perigord.com/wp-content/uploads/2023/03/gite-cour-05.jpg",
-      "https://gites-charme-piscine-dordogne-perigord.com/wp-content/uploads/2023/03/gite-cour-04.jpg",
-      "https://gites-charme-piscine-dordogne-perigord.com/wp-content/uploads/2023/03/gite-cour-03.jpg",
-      "https://gites-charme-piscine-dordogne-perigord.com/wp-content/uploads/2023/03/gite-cour-07.jpg",
-    ],
+      "gite-cour-01.jpg","gite-cour-06.jpg","gite-cour-02.jpg","gite-cour-05.jpg",
+      "gite-cour-04.jpg","gite-cour-03.jpg","gite-cour-07.jpg",
+    ].map((f) => img("la-cour", f)),
   },
 ];
 

@@ -1,3 +1,5 @@
+import { assetUrl } from "../utils/asset";
+
 const villages = [
   "Beaumont-du-Périgord",
   "Monpazier",
@@ -55,7 +57,7 @@ export default function RegionSection() {
               <img
                 className="w-full h-full object-cover"
                 alt="Vue aérienne de la vallée de la Dordogne"
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuD9gUgYHEPLZ8mvab_DPzuIrWIVmdziSl0WInLS1CEidnWixlwPMw3saWRnxolyitgONKCVEebSLtTwpJO7RO7_O3hBrubpfM3UMmFZeiFCvMl_irTNwLiSgUj1Hyz8pq7ibkEUXX9p97PNYG9wDXDkZNJWww2nCzH10EfhWUKlsZnNnyvmsxeRgNC0Fz7h_kPZ-GSCCAZQcP3b1RxuMsdJJKbYVald58AZor-bNG1pN5coiLAaof6vvfpciDtj-YHbvPKEucm7QFZf"
+                src={assetUrl("images/general/region.jpg")}
               />
             </div>
             <div className="hidden md:block absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] border border-primary/10 rounded-full -z-10 animate-pulse" />

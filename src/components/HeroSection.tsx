@@ -1,14 +1,14 @@
+import { assetUrl } from "../utils/asset";
+
 export default function HeroSection() {
   return (
     <section className="relative h-screen flex items-center justify-center overflow-hidden">
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-black/30 z-10" />
-        <div
-          className="w-full h-full bg-cover bg-center"
-          style={{
-            backgroundImage:
-              "url('https://lh3.googleusercontent.com/aida-public/AB6AXuDxf4IXQ4lTQNuWQyThRAEApFJTi6DRdxhrKmRCHd_NRUg7r8_EH88IcAWWEr5gjVocEb_mMyFuepIXGj_a4J_dCKtMz02PQ5xUvv84_TAmgACfQp-Fm0f82JJ4MWuZQnp5Vmiwdx7QsSO01lLoiJNuDnZVLoPht5wmNWHlXVSxGOtHRez8Rb4GKHupgMjzkFkkuKz-h26wQHYrzr3nfKKSrLntBFqw8c4MbITTUn23zJCEJi6mqDLZQbOaz1gaKcH053m_DTVobCS6')",
-          }}
+        <img
+          className="w-full h-full object-cover"
+          src={assetUrl("images/general/hero-bg.jpg")}
+          alt="Paysage Dordogne"
         />
       </div>
       <div className="relative z-20 text-center text-white px-margin-mobile max-w-4xl">
